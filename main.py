@@ -1,5 +1,13 @@
-def printHello():
-  print("Hello World")
+from kivymd.app import MDApp
+from kivymd.uix.label import MDLabel
 
-if __name__ == "__main__":
-  printHello()
+
+class MainApp(MDApp):
+    def build(self):
+        return MDLabel(text="Hello, World", halign="center")
+
+
+MainApp().run()
+#
+#if __name__ == "__main__":
+#  printHello()
