@@ -11,10 +11,10 @@ PB = pyrebase.initialize_app(config)
 db = PB.database()
 
 data = {
-    "Test1": "Val1RR",
-    "Test2": "Val2RR",
-    "Test3": "Val3RR",
+    "Test4": "Val4RR",
+    "Test5": "Val5RR",
+    "Test6": "Val6RR",
 }
 
 #db.push(data) #Unique ID
-db.child("MyBBList").child("TestCholdNode").set(data)
+db.child("MyBBList").push(data)

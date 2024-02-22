@@ -1,0 +1,33 @@
+import firebase_admin
+from firebase_admin import db, credentials
+import time
+Youtube = "https://www.youtube.com/watch?v=BnrkTpgH5Vc"
+
+startTime = time.time()
+
+credDict = {
+    "type": "service_account",
+    "project_id": "neuralbasket-e13bc",
+    "private_key_id": "24e56528d91010174a73c905508927c5cfcc7b9b",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC4C3i4GlzOodCp\nUBB6n8B2eeLaLlKFYlepOhMx5WGPksgZEZmsc9ihuFoU/N4CWhjn7QM7Q+4tISUT\nWki4pqtq2wG3cLLUUj3J8uknbnC3t6Surf4HwjMQdeQol7MTdehzhlK71wY/0LZg\n6rzvvtgBcdfUh2WN+SWq2LDTBCXXH91g5XqKVo1sG2bGdoLjUJsuRUVs72Zju2ll\nQ2jt9IHBWM1rSVfUM/+pZU336Gk/RCLjnBl9p2sdETXC2XrO1j8/2P5WdzN323Xg\nafIWXvukGX3Cmdu/YaRUW0J9seuPxHHRIHUfx7uRQbe2oqGyB8ao+b+nJ5V2sV3h\nvZjeLZQ/AgMBAAECggEAJbFDwgC0LSV6xJI/Lb31/s2rph+Ciwq/BUt9juR5fJwF\nGw09udHn9gb5e/7lwPmOzEEAPm0FJHz7SOFer2KDDNlZmqYcGdvWB7wWABtgPl//\n/D5qHlCpgJ+EYMPgywWE29QQsaOyBfPKxkKM+1TMjE8ycrZgGBmEm17RqAXbchkc\nnOgVVjFrY2s26f6t5d6O0XSh6GVepSoxGXqybzcaN9PBkUFO8JHKem29iKYd+l8p\nhEhnrDdtI0u3n5GVMgzdxoBPxEFgFm2UFr8iR9rKYsl6h58tGR/Fu5HIxrpaeYOX\nGjZCgjyg/2jteQG9xwhUnTcT6Q2GH49zY/hebnspYQKBgQD833pS0nS6hAdKTgcd\nC+UnsrJS1W8DzYhbtIBNl58zyoiLOEpPJg9Ir1sUJDgZ3ISkfWEdIbg2TY15h6k8\nvIOKKBbMKKWoSfVPRNNAy80CGNnqMkLSU6tmUuDXis0rJ6lfdHigQlc/hfV2+wMN\n5Shnm9bb7H1nALAjMTsMLSq9twKBgQC6UhqV4S4f3q7dULHGQ9KpdaI34lH6tD4m\nJgcfkrpJ5yLH2Dq6rF/vnqzh7is+ZrtMvk/QhGL+IhXHsFAUf8OCaI0D0gRFkOUm\nLpTNxIqvKqoYECyHLvdhOjYDypbo/zO9msUdOBdtbu//isXcfg9nfYVwLnMdKPUU\noWiaN5lduQKBgQCrpuu7It9X6N2mA9dyUSvJydSgw/8q3q8MSTe69Ax+tKIBl0Fh\n/tzrIxW5U2i9rWJg4jc09jm8quI5N+yarQDBnLr09TaWSTX7DCY22uEb5lCuWFXh\nviggOmwkBDWHcNHZWQ+1AbOGDGH21SdanE7UHgY4nYz2iZIHIZkKh/J2ewKBgGMV\nbpXuHj1MiumfFCs/vjPoHtBhRv9wAuz+pCMiQHc0t8ZXM0Q6jvo7A+1SXyTcNRbm\nzkMxZAOJ1NNQ7AU6vJoJR5SUhzkHiRT5CKE0uBvXMIWDdGqfi2blMfxqLD7UGIvo\nVpLnVW4Y5QCcqARN9ZsvoVq7GPSU52CFRb9dee3hAoGBAPXF6jsZ+ph4M4Ogg1NC\nbb1flwVkMNTQ4vrZz+GJs/RuoAOSwhQg3XQg//eV2vTNtZxJutddAnMwSy83RNPW\nROwd6ilJ6pb3Lw1C6cMk5+lKl11fyvvlq3RQZ/JA8mZefBX/kdPVZdpLc29FIKE7\nuCco9/3zGvC8CObx1uVcddb4\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-irja7@neuralbasket-e13bc.iam.gserviceaccount.com",
+    "client_id": "112303901639269821035",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-irja7%40neuralbasket-e13bc.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+  }
+
+cred = credentials.Certificate(credDict)
+firebase_admin.initialize_app(cred, {"databaseURL": "https://neuralbasket-e13bc-default-rtdb.europe-west1.firebasedatabase.app/"})
+
+ref = db.reference("/")
+#db.reference("").update({"GroceryList": "kjelltore@steiro.info"})
+
+db.reference("/GroceryList").push().set({input("What "): int(input("Ammount"))})
+print(ref.get())
+
+endTime = time.time()
+print(f"Executed in {endTime-startTime} seconds")
+
